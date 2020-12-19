@@ -21,8 +21,18 @@
   color: black;
 }
 
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+
+.slider-container span {
+  line-height: 1.5;
+}
+
 .slider {
   width: 300px;
   margin: 0 10px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
