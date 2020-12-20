@@ -9,7 +9,8 @@ class Palette extends React.Component {
     super(props);
     this.state = {
       level: 500,
-      format: "hex"
+      format: "hex",
+      open: false
     };
   }
 
@@ -18,16 +19,27 @@ class Palette extends React.Component {
   }
 
   changeFormat = (value) => {
-    this.setState({ format: value });
+    this.setState({ format: value, open: true });
+  }
+
+  closeSnackbar = () => {
+    this.setState({ open: false });
   }
 
   render() {
     const { colors } = this.props.palette;
-    const { level, format } = this.state;
+    const { level, format, open } = this.state;
     const colorBoxes = colors[level].map(color => (<ColorBox color={color[format]} name={color.name} />))
     return (
       <div className="palette">
-        <Navbar level={level} changeLevel={this.changeLevel} format={format} changeFormat={this.changeFormat} />
+        <Navbar
+          level={level}
+          changeLevel={this.changeLevel}
+          format={format}
+          changeFormat={this.changeFormat}
+          open={open}
+          closeSnackbar={this.closeSnackbar}
+        />
         <div className="palette-colors">
           {colorBoxes}
         </div>

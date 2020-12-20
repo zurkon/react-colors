@@ -2,14 +2,17 @@ import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Slider from '@material-ui/core/Slider';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 import './Navbar.css';
 
-const Navbar = ({ level, format, changeLevel, changeFormat }) => {
+const Navbar = ({ level, format, changeLevel, changeFormat, open, closeSnackbar }) => {
   return (
     <header className="navbar">
       <div className="logo">
-        <a href="/">reactuicolors</a>
+        <a href="/">REACTCOLORS</a>
       </div>
       <div className="slider-container">
         <span>Level: {level}</span>
@@ -24,6 +27,21 @@ const Navbar = ({ level, format, changeLevel, changeFormat }) => {
           <MenuItem value="rgba">RGBA - rgba(255,255,255, 1.0)</MenuItem>
         </Select>
       </div >
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        open={open}
+        autoHideDuration={3000}
+        message={<span id="message-id">Format Changed To {format.toUpperCase()}</span>}
+        ContentProps={{
+          "aria-describedby": "message-id"
+        }}
+        onClose={closeSnackbar}
+        action={[
+          <IconButton onClick={closeSnackbar} color='inherit' key="close" aria-label="close">
+            <CloseIcon />
+          </IconButton>
+        ]}
+      />
     </header >
   )
 }
