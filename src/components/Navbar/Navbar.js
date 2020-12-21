@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Slider from '@material-ui/core/Slider';
@@ -12,7 +14,7 @@ const Navbar = ({ level, format, changeLevel, changeFormat, open, closeSnackbar 
   return (
     <header className="navbar">
       <div className="logo">
-        <a href="/">REACTCOLORS</a>
+        <Link to="/">REACTCOLORS</Link>
       </div>
       <div className="slider-container">
         <span>Level: {level}</span>
