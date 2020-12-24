@@ -19,7 +19,7 @@ class ColorBox extends React.Component {
   }
 
   render() {
-    const { color, name, moreUrl } = this.props;
+    const { color, name, moreUrl, showLink } = this.props;
     const { copied } = this.state;
     return (
       <CopyToClipboard text={color} onCopy={this.changeCopyState}>
@@ -36,9 +36,11 @@ class ColorBox extends React.Component {
             <button className="copy-button">Copy</button>
           </div>
           {/* stopPropagation method prevent the CopyToClipboard event being fired */}
-          <Link to={moreUrl} onClick={e => e.stopPropagation()}>
-            <span className="see-more">More</span>
-          </Link>
+          {showLink && (
+            <Link to={moreUrl} onClick={e => e.stopPropagation()}>
+              <span className="see-more">More</span>
+            </Link>
+          )}
         </div>
       </CopyToClipboard>
     );

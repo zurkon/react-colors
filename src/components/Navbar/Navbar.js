@@ -10,18 +10,22 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import './Navbar.css';
 
-const Navbar = ({ level, format, changeLevel, changeFormat, open, closeSnackbar }) => {
+const Navbar = ({ level, format, changeLevel, changeFormat, open, closeSnackbar, showSlide }) => {
   return (
     <header className="navbar">
       <div className="logo">
         <Link to="/">REACTCOLORS</Link>
       </div>
-      <div className="slider-container">
-        <span>Level: {level}</span>
-        <div className="slider">
-          <Slider value={level} min={100} max={900} marks step={100} onChange={(e, val) => changeLevel(val)} />
-        </div>
-      </div>
+      {
+        showSlide && (
+          <div className="slider-container">
+            <span>Level: {level}</span>
+            <div className="slider">
+              <Slider value={level} min={100} max={900} marks step={100} onChange={(e, val) => changeLevel(val)} />
+            </div>
+          </div>
+        )
+      }
       <div className="select-container">
         <Select value={format} onChange={(e) => { changeFormat(e.target.value); }}>
           <MenuItem value="hex">HEX - #ffffff</MenuItem>
