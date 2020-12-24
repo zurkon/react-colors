@@ -6,7 +6,16 @@
   cursor: pointer;
 }
 
-.colorbox .copy-button {
+.colorshade .colorbox {
+  height: 50%;
+}
+
+.colorbox.go-back {
+  background-color: black;
+}
+
+.colorbox .copy-button,
+.colorbox .back-button {
   width: 100px;
   height: 30px;
   display: inline-block;
@@ -24,6 +33,11 @@
   border: none;
   opacity: 0;
   cursor: pointer;
+}
+
+.colorbox .back-button {
+  opacity: 1;
+  text-decoration: none;
 }
 
 .colorbox:hover .copy-button {

@@ -1,46 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import ColorBox from '../ColorBox/ColorBox';
 import Navbar from '../Navbar/Navbar';
+import PaletteFooter from '../PaletteFooter/PaletteFooter';
 
-class ColorShadePalette extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      format: "hex",
-      open: false
-    };
-  }
+import { ColorContext } from '../../contexts/ColorContext';
 
-  changeFormat = (value) => {
-    this.setState({ format: value, open: true });
-  }
+const ColorShadePalette = ({ palette: { emoji, paletteName, shades, id } }) => {
+  const { format, changeFormat } = useContext(ColorContext);
 
-  closeSnackbar = () => {
-    this.setState({ open: false });
-  }
-  render() {
-    const { palette } = this.props;
-    const { format, open } = this.state;
-    return (
-      <div className="palette">
-        <Navbar
-          format={format}
-          changeFormat={this.changeFormat}
-          open={open}
-          closeSnackbar={this.closeSnackbar}
-          showSlide={false}
-        />
-        <h1>Single Shade Color Palette</h1>
-        <div className="palette-colors">
-          {
-            palette.map(color => (
-              <ColorBox key={color.id} name={color.name} color={color[format]} showLink={false} />
-            ))
-          }
+  return (
+    <div className="colorshade palette">
+      <Navbar
+        format={format}
+        changeFormat={changeFormat}
+        showSlide={false}
+      />
+      <div className="palette-colors">
+        {
+          shades.map(color => (
+            <ColorBox key={color.name.replace(/ /g, '-')} name={color.name} color={color[format]} showLink={false} />
+          ))
+        }
+        <div className="go-back colorbox">
+          <Link className="back-button" to={`/palette/${id}`}>GO BACK</Link>
         </div>
       </div>
-    );
-  }
-};
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
+    </div>
+  );
+}
 
 export default ColorShadePalette;

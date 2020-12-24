@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,7 +10,13 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import './Navbar.css';
 
-const Navbar = ({ level, format, changeLevel, changeFormat, open, closeSnackbar, showSlide }) => {
+const Navbar = ({ level, format, changeLevel, changeFormat, showSlide }) => {
+  const [open, setOpen] = useState(false);
+
+  const closeSnackbar = () => {
+    setOpen(false);
+  };
+
   return (
     <header className="navbar">
       <div className="logo">
@@ -27,7 +33,7 @@ const Navbar = ({ level, format, changeLevel, changeFormat, open, closeSnackbar,
         )
       }
       <div className="select-container">
-        <Select value={format} onChange={(e) => { changeFormat(e.target.value); }}>
+        <Select value={format} onChange={(e) => { changeFormat(e.target.value); setOpen(true) }}>
           <MenuItem value="hex">HEX - #ffffff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
           <MenuItem value="rgba">RGBA - rgba(255,255,255, 1.0)</MenuItem>
