@@ -1,4 +1,4 @@
-.palette {
+/* .palette {
   height: 100vh;
   overflow: hidden;
 }
@@ -8,7 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   background-color: #dae1e4;
-}
+} */
 .palette-footer {
   height: 4vh;
   display: flex;
