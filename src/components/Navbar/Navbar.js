@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -8,9 +9,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-import './Navbar.css';
+import styles from './Navbar.styles';
 
-const Navbar = ({ level, format, changeLevel, changeFormat, showSlide }) => {
+const Navbar = ({ level, format, changeLevel, changeFormat, showSlide, classes }) => {
   const [open, setOpen] = useState(false);
 
   const closeSnackbar = () => {
@@ -18,22 +19,22 @@ const Navbar = ({ level, format, changeLevel, changeFormat, showSlide }) => {
   };
 
   return (
-    <header className="navbar">
-      <div className="logo">
+    <header className={classes.navbar}>
+      <div className={classes.logo}>
         <Link to="/">REACTCOLORS</Link>
       </div>
       {
         showSlide && (
-          <div className="slider-container">
+          <div className={classes.sliderContainer}>
             <span>Level: {level}</span>
-            <div className="slider">
+            <div className={classes.slider}>
               <Slider value={level} min={100} max={900} marks step={100} onChange={(e, val) => changeLevel(val)} />
             </div>
           </div>
         )
       }
-      <div className="select-container">
-        <Select value={format} onChange={(e) => { changeFormat(e.target.value); setOpen(true) }}>
+      <div className={classes.selectContainer}>
+        <Select value={format} onChange={(e) => { changeFormat(e.target.value); setOpen(true); }}>
           <MenuItem value="hex">HEX - #ffffff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
           <MenuItem value="rgba">RGBA - rgba(255,255,255, 1.0)</MenuItem>
@@ -58,4 +59,4 @@ const Navbar = ({ level, format, changeLevel, changeFormat, showSlide }) => {
   )
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);

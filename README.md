@@ -1,7 +1,7 @@
 # React Colors Project
 
 - A clone of websites like [Flat UI Colors](https://flatuicolors.com/) and [Material UI Colors](http://materialuicolors.co/?utm_source=launchers).
-- Made using React.js and other util libraries.
+- Made using React.js, React Hooks, React Router, chroma.js and Material-UI.
 
 # Screenshoots
 ![image](https://i.imgur.com/9x1F9At.png)
