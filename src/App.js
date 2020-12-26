@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Palette from './components/Palette/Palette';
 import PaletteList from './components/PaletteList/PaletteList';
 import ColorShadePalette from './components/ColorShadePalette/ColorShadePalette';
+import PaletteForm from './components/PaletteForm/PaletteForm';
 
 import ColorContextProvider from './contexts/ColorContext';
 
@@ -40,6 +41,7 @@ class App extends React.Component {
     return (
       <ColorContextProvider>
         <Switch>
+          <Route path="/palette/new" render={() => <PaletteForm />} />
           <Route
             path="/palette/:paletteId/:colorId"
             render={(routeProps) => (
