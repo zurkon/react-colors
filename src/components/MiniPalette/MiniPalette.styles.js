@@ -2,6 +2,8 @@ const styles = {
   root: {
     backgroundColor: 'white',
     borderRadius: 5,
+    marginTop: '5%',
+    width: '30%',
     padding: '0.5rem',
     position: 'relative',
     overflow: 'hidden',
