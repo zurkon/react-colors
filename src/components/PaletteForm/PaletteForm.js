@@ -17,13 +17,18 @@ import DraggableColorBox from '../DraggableColorBox/DraggableColorBox';
 
 import useStyles from './PaletteForm.styles';
 
-const PaletteForm = ({ savePalette, history }) => {
+// Maybe i should have use a Class Component instead of a Function Component on this situation...
+const PaletteForm = ({ savePalette, palettes, history }) => {
   const classes = useStyles();
   const [currentColor, setCurrentColor] = useState('#22CFCF');
   const [colors, setColors] = useState([]);
   const [open, setOpen] = useState(true);
-  const [newName, setName] = useState('');
-  const [errors, setErrors] = useState({ required: '', uniqueName: '', uniqueColor: '' });
+  const [newColorName, setColorName] = useState('');
+  const [newPaletteName, setPaletteName] = useState('');
+  const [errors, setErrors] = useState({
+    color: { required: '', uniqueName: '', uniqueColor: '' },
+    palette: { required: '', uniqueName: '' }
+  });
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -37,30 +42,41 @@ const PaletteForm = ({ savePalette, history }) => {
     setCurrentColor(newColor.hex);
   }
 
-  const handleInput = (e) => {
+  const handleColorName = (e) => {
     e.preventDefault();
-    setName(e.target.value);
+    setColorName(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handlePaletteName = (e) => {
     e.preventDefault();
-    if (validate()) {
+    setPaletteName(e.target.value);
+  }
+
+  const handleColorSubmit = (e) => {
+    e.preventDefault();
+    if (validate(e.target.name)) {
       addNewColor();
     }
   }
 
-  const validate = () => {
-    const filteredColor = colors.filter(({ color }) => color.toLowerCase() === currentColor.toLowerCase());
-    const filteredName = colors.filter(({ name }) => name.toLowerCase() === newName.toLowerCase());
+  const validate = (name) => {
     let temp = {};
-    temp.required = newName ? '' : 'This field is required';
-    if (colors.length !== 0) {
-      temp.uniqueName = filteredName.length !== 0 ? 'Color name must be unique' : '';
-      temp.uniqueColor = filteredColor.length !== 0 ? 'Color already used' : '';
+    if (name === 'color') {
+      const filteredColor = colors.filter(({ color }) => color.toLowerCase() === currentColor.toLowerCase());
+      const filteredName = colors.filter(({ name }) => name.toLowerCase() === newColorName.toLowerCase());
+      temp.required = newColorName ? '' : 'This field is required';
+      if (colors.length !== 0) {
+        temp.uniqueName = filteredName.length !== 0 ? 'Color name must be unique' : '';
+        temp.uniqueColor = filteredColor.length !== 0 ? 'Color already used' : '';
+      }
+    } else {
+      const filteredPalette = palettes.filter(({ paletteName }) => paletteName.toLowerCase() === newPaletteName.toLowerCase());
+      temp.required = newPaletteName ? '' : 'This field is required';
+      temp.uniqueName = filteredPalette.length !== 0 ? 'Palette name must be unique' : '';
     }
     setErrors({
       ...errors,
-      ...temp
+      [name]: { ...errors[name], ...temp }
     });
 
     return Object.values(temp).every(err => err === '');
@@ -69,22 +85,24 @@ const PaletteForm = ({ savePalette, history }) => {
   const addNewColor = () => {
     const newColor = {
       color: currentColor,
-      name: newName
+      name: newColorName
     }
     setColors([...colors, newColor]);
-    setName('');
+    setColorName('');
   }
 
-  const handleSave = () => {
-    let newName = 'New Palette Name';
-    const newPalette = {
-      paletteName: newName,
-      id: newName.toLowerCase().replace(/ /g, '-'),
-      emoji: "🎨",
-      colors: colors
-    };
-    savePalette(newPalette);
-    history.push('/');
+  const handleSave = (e) => {
+    e.preventDefault();
+    if (validate(e.target.name)) {
+      const newPalette = {
+        paletteName: newPaletteName,
+        id: newPaletteName.toLowerCase().replace(/ /g, '-'),
+        emoji: "🎨",
+        colors: colors
+      };
+      savePalette(newPalette);
+      history.push('/');
+    }
   }
 
 
@@ -111,7 +129,17 @@ const PaletteForm = ({ savePalette, history }) => {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
-          <Button variant="contained" color="primary" onClick={handleSave}>Save Palette</Button>
+          <form name="palette" onSubmit={(e) => { handleSave(e); }}>
+            <TextField
+              label="Palette Name"
+              autoComplete="off"
+              value={newPaletteName}
+              onChange={e => { handlePaletteName(e) }}
+              error={errors.palette.required !== '' || errors.palette.uniqueName !== ''}
+              helperText={errors.palette.required || errors.palette.uniqueName}
+            />
+            <Button variant="contained" color="primary" type="submit">Save Palette</Button>
+          </form>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -141,12 +169,15 @@ const PaletteForm = ({ savePalette, history }) => {
           disableAlpha
           onChange={updateCurrentColor}
         />
-        <form onSubmit={(e) => { handleSubmit(e); }}>
+        <form name="color" onSubmit={(e) => { handleColorSubmit(e); }}>
           <TextField
-            value={newName}
-            onChange={e => { handleInput(e) }}
-            error={errors.required !== '' || errors.uniqueName !== '' || errors.uniqueColor !== ''}
-            helperText={errors.required || errors.uniqueName || errors.uniqueColor}
+            label="Color Name"
+            autoComplete="off"
+            value={newColorName}
+            name="color"
+            onChange={e => { handleColorName(e) }}
+            error={errors.color.required !== '' || errors.color.uniqueName !== '' || errors.color.uniqueColor !== ''}
+            helperText={errors.color.required || errors.color.uniqueName || errors.color.uniqueColor}
           />
           <Button
             variant="contained"

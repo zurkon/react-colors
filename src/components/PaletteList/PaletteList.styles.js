@@ -37,11 +37,7 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     gap: '5%',
-    paddingBottom: '2rem',
-    // display: 'grid',
-    gridTemplateColumns: 'repeat(3, 30%)',
-    // gridAutoRows: '11.5rem',
-    // gridGap: '5%'
+    paddingBottom: '2rem'
   }
 };
 

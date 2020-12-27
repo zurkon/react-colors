@@ -53,7 +53,7 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/palette/new"
-            render={(routerProps) => <PaletteForm savePalette={this.savePalette} {...routerProps} />}
+            render={(routerProps) => <PaletteForm savePalette={this.savePalette} palettes={this.state.palettes} {...routerProps} />}
           />
           <Route
             path="/palette/:paletteId/:colorId"
