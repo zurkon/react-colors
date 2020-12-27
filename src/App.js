@@ -12,9 +12,15 @@ import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers.js';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { palettes: seedColors };
+    this.findPalette = this.findPalette.bind(this);
+    this.savePalette = this.savePalette.bind(this);
+  }
 
   findPalette(id) {
-    return seedColors.find((palette) => palette.id === id);
+    return this.state.palettes.find((palette) => palette.id === id);
   }
 
   getShades(id, palette) {
@@ -37,11 +43,18 @@ class App extends React.Component {
     return paletteShades;
   }
 
+  savePalette(newPalette) {
+    this.setState({ palettes: [...this.state.palettes, newPalette] });
+  }
+
   render() {
     return (
       <ColorContextProvider>
         <Switch>
-          <Route path="/palette/new" render={() => <PaletteForm />} />
+          <Route
+            path="/palette/new"
+            render={(routerProps) => <PaletteForm savePalette={this.savePalette} {...routerProps} />}
+          />
           <Route
             path="/palette/:paletteId/:colorId"
             render={(routeProps) => (
@@ -59,7 +72,7 @@ class App extends React.Component {
           <Route
             path="/"
             render={() => (
-              <PaletteList palettes={seedColors} />
+              <PaletteList palettes={this.state.palettes} />
             )}
           />
         </Switch>

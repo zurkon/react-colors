@@ -13,6 +13,8 @@ const styles = {
     backgroundColor: '#dae1e4',
     height: '120px',
     width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
     borderRadius: '5px',
     overflow: 'hidden'
   },
@@ -32,11 +34,7 @@ const styles = {
   },
   miniColor: {
     height: '25%',
-    width: '20%',
-    display: 'inline-block',
-    margin: '0 auto',
-    position: 'relative',
-    marginBottom: '-4px'
+    width: '20%'
   }
 };
 

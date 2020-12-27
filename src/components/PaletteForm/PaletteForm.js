@@ -17,7 +17,7 @@ import DraggableColorBox from '../DraggableColorBox/DraggableColorBox';
 
 import useStyles from './PaletteForm.styles';
 
-const PaletteForm = () => {
+const PaletteForm = ({ savePalette, history }) => {
   const classes = useStyles();
   const [currentColor, setCurrentColor] = useState('#22CFCF');
   const [colors, setColors] = useState([]);
@@ -75,12 +75,25 @@ const PaletteForm = () => {
     setName('');
   }
 
+  const handleSave = () => {
+    let newName = 'New Palette Name';
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, '-'),
+      emoji: "🎨",
+      colors: colors
+    };
+    savePalette(newPalette);
+    history.push('/');
+  }
+
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="default"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -98,6 +111,7 @@ const PaletteForm = () => {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button variant="contained" color="primary" onClick={handleSave}>Save Palette</Button>
         </Toolbar>
       </AppBar>
       <Drawer
