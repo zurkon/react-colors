@@ -91,6 +91,10 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
     setColorName('');
   }
 
+  const removeColor = (colorName) => {
+    setColors(colors.filter(color => color.name !== colorName));
+  }
+
   const handleSave = (e) => {
     e.preventDefault();
     if (validate(e.target.name)) {
@@ -193,11 +197,13 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
         })}
       >
         <div className={classes.drawerHeader} />
-        {
-          colors.map(({ color, name }) => (
-            <DraggableColorBox color={color} name={name} key={name} />
-          ))
-        }
+        <div className={classes.colors}>
+          {
+            colors.map(({ color, name }) => (
+              <DraggableColorBox color={color} name={name} key={name} handleClick={removeColor} />
+            ))
+          }
+        </div>
       </main>
     </div>
   );

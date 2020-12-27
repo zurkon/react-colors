@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     height: 'calc(100vh - 64px)',
-    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -58,6 +57,11 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  colors: {
+    height: '100%',
+    display: 'flex',
+    flexWrap: 'wrap'
+  }
 }));
 
 export default useStyles;

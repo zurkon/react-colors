@@ -20,7 +20,7 @@ const styles = {
     bottom: '0px',
     letterSpacing: '1px',
     textTransform: 'uppercase',
-    fontSize: '12px',
+    fontSize: '12px'
   },
   copyText: {
     color: props => chroma(props.color).luminance() >= 0.7 ? 'black' : 'white'
