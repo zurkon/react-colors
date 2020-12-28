@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import TextField from '@material-ui/core/TextField';
 
-import { ChromePicker } from 'react-color';
+import ColorPickerForm from '../ColorPickerForm/ColorPickerForm';
 import DraggableColorList from '../DraggableColorList/DraggableColorList';
 import arrayMove from 'array-move';
 
@@ -21,15 +21,14 @@ import useStyles from './PaletteForm.styles';
 // Maybe i should have use a Class Component instead of a Function Component on this situation...
 const PaletteForm = ({ savePalette, palettes, history }) => {
   const classes = useStyles();
-  const [currentColor, setCurrentColor] = useState('#22CFCF');
-  const [colors, setColors] = useState([]);
+  const [colors, setColors] = useState(palettes[0].colors);
   const [open, setOpen] = useState(true);
-  const [newColorName, setColorName] = useState('');
   const [newPaletteName, setPaletteName] = useState('');
   const [errors, setErrors] = useState({
-    color: { required: '', uniqueName: '', uniqueColor: '' },
-    palette: { required: '', uniqueName: '' }
+    required: '',
+    uniqueName: ''
   });
+  const maxColors = 20;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -39,13 +38,12 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
     setOpen(false);
   };
 
-  const updateCurrentColor = (newColor) => {
-    setCurrentColor(newColor.hex);
+  const addNewColor = (newColor) => {
+    setColors([...colors, newColor]);
   }
 
-  const handleColorName = (e) => {
-    e.preventDefault();
-    setColorName(e.target.value);
+  const removeColor = (colorName) => {
+    setColors(colors.filter(color => color.name !== colorName));
   }
 
   const handlePaletteName = (e) => {
@@ -53,52 +51,22 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
     setPaletteName(e.target.value);
   }
 
-  const handleColorSubmit = (e) => {
-    e.preventDefault();
-    if (validate(e.target.name)) {
-      addNewColor();
-    }
-  }
-
-  const validate = (name) => {
+  const validate = () => {
     let temp = {};
-    if (name === 'color') {
-      const filteredColor = colors.filter(({ color }) => color.toLowerCase() === currentColor.toLowerCase());
-      const filteredName = colors.filter(({ name }) => name.toLowerCase() === newColorName.toLowerCase());
-      temp.required = newColorName ? '' : 'This field is required';
-      if (colors.length !== 0) {
-        temp.uniqueName = filteredName.length !== 0 ? 'Color name must be unique' : '';
-        temp.uniqueColor = filteredColor.length !== 0 ? 'Color already used' : '';
-      }
-    } else {
-      const filteredPalette = palettes.filter(({ paletteName }) => paletteName.toLowerCase() === newPaletteName.toLowerCase());
-      temp.required = newPaletteName ? '' : 'This field is required';
-      temp.uniqueName = filteredPalette.length !== 0 ? 'Palette name must be unique' : '';
-    }
+    const filteredPalette = palettes.filter(({ paletteName }) => paletteName.toLowerCase() === newPaletteName.toLowerCase());
+    temp.required = newPaletteName ? '' : 'This field is required';
+    temp.uniqueName = filteredPalette.length !== 0 ? 'Palette name must be unique' : '';
     setErrors({
       ...errors,
-      [name]: { ...errors[name], ...temp }
+      ...temp
     });
 
     return Object.values(temp).every(err => err === '');
   }
 
-  const addNewColor = () => {
-    const newColor = {
-      color: currentColor,
-      name: newColorName
-    }
-    setColors([...colors, newColor]);
-    setColorName('');
-  }
-
-  const removeColor = (colorName) => {
-    setColors(colors.filter(color => color.name !== colorName));
-  }
-
   const handleSave = (e) => {
     e.preventDefault();
-    if (validate(e.target.name)) {
+    if (validate()) {
       const newPalette = {
         paletteName: newPaletteName,
         id: newPaletteName.toLowerCase().replace(/ /g, '-'),
@@ -112,6 +80,18 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setColors(arrayMove(colors, oldIndex, newIndex));
+  }
+
+  const clearColors = () => {
+    setColors([]);
+  }
+
+  const addRandomColor = () => {
+    // flat() joins all arrays into a big one Array
+    const allColors = palettes.map(p => p.colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    const randomColor = allColors[rand];
+    setColors([...colors, randomColor]);
   }
 
 
@@ -144,8 +124,8 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
               autoComplete="off"
               value={newPaletteName}
               onChange={e => { handlePaletteName(e) }}
-              error={errors.palette.required !== '' || errors.palette.uniqueName !== ''}
-              helperText={errors.palette.required || errors.palette.uniqueName}
+              error={errors.required !== '' || errors.uniqueName !== ''}
+              helperText={errors.required || errors.uniqueName}
             />
             <Button variant="contained" color="primary" type="submit">Save Palette</Button>
           </form>
@@ -170,31 +150,14 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
           Design Your Palette
         </Typography>
         <div>
-          <Button variant="contained" color="secondary">Clear Palette</Button>
-          <Button variant="contained" color="primary">Random Color</Button>
+          <Button variant="contained" color="secondary" onClick={clearColors}>Clear Palette</Button>
+          <Button variant="contained" color="primary" disabled={colors.length >= maxColors} onClick={addRandomColor}>Random Color</Button>
         </div>
-        <ChromePicker
-          color={currentColor}
-          disableAlpha
-          onChange={updateCurrentColor}
+        <ColorPickerForm
+          addNewColor={addNewColor}
+          colors={colors}
+          paletteIsFull={colors.length >= maxColors}
         />
-        <form name="color" onSubmit={(e) => { handleColorSubmit(e); }}>
-          <TextField
-            label="Color Name"
-            autoComplete="off"
-            value={newColorName}
-            name="color"
-            onChange={e => { handleColorName(e) }}
-            error={errors.color.required !== '' || errors.color.uniqueName !== '' || errors.color.uniqueColor !== ''}
-            helperText={errors.color.required || errors.color.uniqueName || errors.color.uniqueColor}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ backgroundColor: currentColor }}
-            type="submit"
-          >Add Color</Button>
-        </form>
       </Drawer>
       <main
         className={clsx(classes.content, {

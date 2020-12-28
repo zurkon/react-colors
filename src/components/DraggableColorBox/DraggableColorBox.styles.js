@@ -23,7 +23,11 @@ const useStyles = makeStyles({
     fontSize: '12px',
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    "& span": {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    }
   },
   deleteIcon: {
     color: 'rgba(0,0,0,0.5)',
