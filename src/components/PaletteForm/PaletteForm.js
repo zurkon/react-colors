@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import TextField from '@material-ui/core/TextField';
 
+import PaletteFormNav from '../PaletteFormNav/PaletteFormNav';
 import ColorPickerForm from '../ColorPickerForm/ColorPickerForm';
 import DraggableColorList from '../DraggableColorList/DraggableColorList';
 import arrayMove from 'array-move';
@@ -23,11 +20,6 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
   const classes = useStyles();
   const [colors, setColors] = useState(palettes[0].colors);
   const [open, setOpen] = useState(true);
-  const [newPaletteName, setPaletteName] = useState('');
-  const [errors, setErrors] = useState({
-    required: '',
-    uniqueName: ''
-  });
   const maxColors = 20;
 
   const handleDrawerOpen = () => {
@@ -44,38 +36,6 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
 
   const removeColor = (colorName) => {
     setColors(colors.filter(color => color.name !== colorName));
-  }
-
-  const handlePaletteName = (e) => {
-    e.preventDefault();
-    setPaletteName(e.target.value);
-  }
-
-  const validate = () => {
-    let temp = {};
-    const filteredPalette = palettes.filter(({ paletteName }) => paletteName.toLowerCase() === newPaletteName.toLowerCase());
-    temp.required = newPaletteName ? '' : 'This field is required';
-    temp.uniqueName = filteredPalette.length !== 0 ? 'Palette name must be unique' : '';
-    setErrors({
-      ...errors,
-      ...temp
-    });
-
-    return Object.values(temp).every(err => err === '');
-  }
-
-  const handleSave = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      const newPalette = {
-        paletteName: newPaletteName,
-        id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-        emoji: "🎨",
-        colors: colors
-      };
-      savePalette(newPalette);
-      history.push('/');
-    }
   }
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
@@ -98,39 +58,15 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        color="default"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
-          <form name="palette" onSubmit={(e) => { handleSave(e); }}>
-            <TextField
-              label="Palette Name"
-              autoComplete="off"
-              value={newPaletteName}
-              onChange={e => { handlePaletteName(e) }}
-              error={errors.required !== '' || errors.uniqueName !== ''}
-              helperText={errors.required || errors.uniqueName}
-            />
-            <Button variant="contained" color="primary" type="submit">Save Palette</Button>
-          </form>
-        </Toolbar>
-      </AppBar>
+      <PaletteFormNav
+        handleDrawerOpen={handleDrawerOpen}
+        open={open}
+        classes={classes}
+        savePalette={savePalette}
+        history={history}
+        colors={colors}
+        palettes={palettes}
+      />
       <Drawer
         className={classes.drawer}
         variant="persistent"
