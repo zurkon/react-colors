@@ -2,9 +2,10 @@
 
 <div align="center">
 
-<div style="width: 60%">
-
-  ![image](https://i.imgur.com/9x1F9At.png)
+<div style="width: 40%">
+  
+  <img src="https://i.imgur.com/9x1F9At.png" />
+  <!-- ![image](https://i.imgur.com/9x1F9At.png) -->
 
 </div>
 
