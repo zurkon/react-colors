@@ -18,7 +18,8 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     borderRadius: '5px',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    alignContent: 'start'
   },
   title: {
     display: 'flex',

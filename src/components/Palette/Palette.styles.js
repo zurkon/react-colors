@@ -7,6 +7,7 @@ const styles = {
     height: '90%',
     display: 'flex',
     flexWrap: 'wrap',
+    alignContent: 'start',
     background: '#dae1e4'
   }
 };

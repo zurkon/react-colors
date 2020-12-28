@@ -22,7 +22,8 @@ const useStyles = makeStyles({
     textTransform: 'uppercase',
     fontSize: '12px',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   deleteIcon: {
     color: 'rgba(0,0,0,0.5)',

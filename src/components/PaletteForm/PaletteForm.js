@@ -13,7 +13,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import TextField from '@material-ui/core/TextField';
 
 import { ChromePicker } from 'react-color';
-import DraggableColorBox from '../DraggableColorBox/DraggableColorBox';
+import DraggableColorList from '../DraggableColorList/DraggableColorList';
+import arrayMove from 'array-move';
 
 import useStyles from './PaletteForm.styles';
 
@@ -109,6 +110,10 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
     }
   }
 
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors(arrayMove(colors, oldIndex, newIndex));
+  }
+
 
   return (
     <div className={classes.root}>
@@ -197,13 +202,7 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <div className={classes.colors}>
-          {
-            colors.map(({ color, name }) => (
-              <DraggableColorBox color={color} name={name} key={name} handleClick={removeColor} />
-            ))
-          }
-        </div>
+        <DraggableColorList colors={colors} removeColor={removeColor} axis='xy' onSortEnd={onSortEnd} />
       </main>
     </div>
   );
