@@ -61,7 +61,6 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
       <PaletteFormNav
         handleDrawerOpen={handleDrawerOpen}
         open={open}
-        classes={classes}
         savePalette={savePalette}
         history={history}
         colors={colors}
@@ -82,18 +81,20 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
           </IconButton>
         </div>
         <Divider />
-        <Typography variant="h4">
-          Design Your Palette
-        </Typography>
-        <div>
-          <Button variant="contained" color="secondary" onClick={clearColors}>Clear Palette</Button>
-          <Button variant="contained" color="primary" disabled={colors.length >= maxColors} onClick={addRandomColor}>Random Color</Button>
+        <div className={classes.container}>
+          <Typography variant="h4">
+            Design Your Palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button variant="contained" color="secondary" onClick={clearColors}>Clear Palette</Button>
+            <Button variant="contained" color="primary" disabled={colors.length >= maxColors} onClick={addRandomColor}>Random Color</Button>
+          </div>
+          <ColorPickerForm
+            addNewColor={addNewColor}
+            colors={colors}
+            paletteIsFull={colors.length >= maxColors}
+          />
         </div>
-        <ColorPickerForm
-          addNewColor={addNewColor}
-          colors={colors}
-          paletteIsFull={colors.length >= maxColors}
-        />
       </Drawer>
       <main
         className={clsx(classes.content, {

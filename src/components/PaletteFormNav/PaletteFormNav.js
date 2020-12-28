@@ -10,7 +10,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, classes, colors, palettes }) => {
+import useStyles from './PaletteFormNav.styles';
+
+const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, colors, palettes }) => {
+  const classes = useStyles();
   const [newPaletteName, setPaletteName] = useState('');
   const [errors, setErrors] = useState({
     required: '',
@@ -50,7 +53,7 @@ const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, classes,
   }
 
   return (
-    <React.Fragment>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -70,9 +73,11 @@ const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, classes,
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Create Palette
           </Typography>
-          <form name="palette" onSubmit={(e) => { handleSave(e); }}>
+        </Toolbar>
+        <div className={classes.navBtns}>
+          <form onSubmit={(e) => { handleSave(e); }}>
             <TextField
               label="Palette Name"
               autoComplete="off"
@@ -83,14 +88,14 @@ const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, classes,
             />
             <Button variant="contained" color="primary" type="submit">
               Save Palette
-            </Button>
-            <Link to="/">
-              <Button variant="contained" color="secondary">Go Back</Button>
-            </Link>
+              </Button>
           </form>
-        </Toolbar>
+          <Link to="/">
+            <Button variant="contained" color="secondary">Go Back</Button>
+          </Link>
+        </div>
       </AppBar>
-    </React.Fragment>
+    </div>
   );
 };
 

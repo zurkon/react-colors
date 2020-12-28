@@ -4,7 +4,10 @@ import TextField from '@material-ui/core/TextField';
 
 import { ChromePicker } from 'react-color';
 
+import useStyles from './ColorPickerForm.styles';
+
 const ColorPickerForm = ({ addNewColor, colors, paletteIsFull }) => {
+  const classes = useStyles();
   const [currentColor, setCurrentColor] = useState('#22CFCF');
   const [newColorName, setColorName] = useState('');
   const [errors, setErrors] = useState({
@@ -58,8 +61,9 @@ const ColorPickerForm = ({ addNewColor, colors, paletteIsFull }) => {
         color={currentColor}
         disableAlpha
         onChange={updateCurrentColor}
+        className={classes.picker}
       />
-      <form name="color" onSubmit={(e) => { handleColorSubmit(e); }}>
+      <form className={classes.colorForm} onSubmit={(e) => { handleColorSubmit(e); }}>
         <TextField
           label="Color Name"
           autoComplete="off"
@@ -68,6 +72,7 @@ const ColorPickerForm = ({ addNewColor, colors, paletteIsFull }) => {
           onChange={e => { handleColorName(e) }}
           error={errors.required !== '' || errors.uniqueName !== '' || errors.uniqueColor !== ''}
           helperText={errors.required || errors.uniqueName || errors.uniqueColor}
+          className={classes.colorInput}
         />
         <Button
           variant="contained"
@@ -75,6 +80,7 @@ const ColorPickerForm = ({ addNewColor, colors, paletteIsFull }) => {
           disabled={paletteIsFull}
           style={{ backgroundColor: (paletteIsFull ? 'rgba(0, 0, 0, 0.12)' : currentColor) }}
           type="submit"
+          className={classes.addColor}
         >
           {paletteIsFull ? 'Palette Full' : 'Add Color'}
         </Button>
