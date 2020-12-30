@@ -8,8 +8,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import SaveIcon from '@material-ui/icons/Save';
 
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
+
 const PaletteDialog = ({ savePalette, history, colors, palettes }) => {
-  const [open, setOpen] = useState(false);
+  const [stage, setOpen] = useState('');
   const [newPaletteName, setPaletteName] = useState('');
   const [errors, setErrors] = useState({
     required: '',
@@ -34,40 +37,49 @@ const PaletteDialog = ({ savePalette, history, colors, palettes }) => {
     return Object.values(temp).every(err => err === '');
   }
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      const newPalette = {
-        paletteName: newPaletteName,
-        id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-        emoji: "🎨",
-        colors: colors
-      };
-      savePalette(newPalette);
-      history.push('/');
-    }
+  const handleSave = (emoji) => {
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
+      emoji: emoji.native,
+      colors: colors
+    };
+    savePalette(newPalette);
+    history.push('/');
   }
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpen = (e, name) => {
+    e.preventDefault();
+    if (name === 'palette') {
+      setOpen(name);
+    } else if (validate()) {
+      setOpen(name);
+    }
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setPaletteName('');
+    setOpen('');
   };
 
   return (
     <React.Fragment>
-      <Button startIcon={<SaveIcon />} variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button startIcon={<SaveIcon />} variant="outlined" color="primary" onClick={(e) => { handleClickOpen(e, 'palette'); }}>
         Save Palette
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={stage === 'emoji'} onClose={handleClose}>
+        <DialogTitle>
+          Choose a Palette Emoji
+        </DialogTitle>
+        <Picker title="Pick a Emoji" emoji='sparkles' set={'twitter'} onSelect={(emoji) => { handleSave(emoji); }} />
+      </Dialog>
+      <Dialog open={stage === 'palette'} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Please enter a name for your new palette. The palette name must be unique.
           </DialogContentText>
-          <form onSubmit={(e) => { handleSave(e); }}>
+          <form onSubmit={(e) => { handleClickOpen(e, 'emoji'); }}>
             <TextField
               autoFocus
               fullWidth
