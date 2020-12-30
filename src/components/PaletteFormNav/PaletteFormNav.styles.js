@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     '& form': {
       display: 'flex',
       alignItems: 'center'
+    },
+    '& button': {
+      marginRight: '1.5rem'
     }
   }
 }));

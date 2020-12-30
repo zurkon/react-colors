@@ -10,47 +10,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+import PaletteDialog from '../PaletteDialog/PaletteDialog';
+
 import useStyles from './PaletteFormNav.styles';
 
 const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, colors, palettes }) => {
   const classes = useStyles();
-  const [newPaletteName, setPaletteName] = useState('');
-  const [errors, setErrors] = useState({
-    required: '',
-    uniqueName: ''
-  });
-
-  const handlePaletteName = (e) => {
-    e.preventDefault();
-    setPaletteName(e.target.value);
-  }
-
-  const validate = () => {
-    let temp = {};
-    const filteredPalette = palettes.filter(({ paletteName }) => paletteName.toLowerCase() === newPaletteName.toLowerCase());
-    temp.required = newPaletteName ? '' : 'This field is required';
-    temp.uniqueName = filteredPalette.length !== 0 ? 'Palette name must be unique' : '';
-    setErrors({
-      ...errors,
-      ...temp
-    });
-
-    return Object.values(temp).every(err => err === '');
-  }
-
-  const handleSave = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      const newPalette = {
-        paletteName: newPaletteName,
-        id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-        emoji: "🎨",
-        colors: colors
-      };
-      savePalette(newPalette);
-      history.push('/');
-    }
-  }
 
   return (
     <div className={classes.root}>
@@ -77,19 +42,8 @@ const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, colors, 
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <form onSubmit={(e) => { handleSave(e); }}>
-            <TextField
-              label="Palette Name"
-              autoComplete="off"
-              value={newPaletteName}
-              onChange={e => { handlePaletteName(e) }}
-              error={errors.required !== '' || errors.uniqueName !== ''}
-              helperText={errors.required || errors.uniqueName}
-            />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-              </Button>
-          </form>
+
+          <PaletteDialog savePalette={savePalette} colors={colors} palettes={palettes} history={history} />
           <Link to="/">
             <Button variant="contained" color="secondary">Go Back</Button>
           </Link>
