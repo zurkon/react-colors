@@ -6,7 +6,7 @@ import MiniPalette from '../MiniPalette/MiniPalette';
 
 import styles from './PaletteList.styles';
 
-const PaletteList = ({ palettes, classes }) => (
+const PaletteList = ({ palettes, classes, deletePalette }) => (
   <div className={classes.root}>
 
     <div className={classes.container}>
@@ -19,7 +19,7 @@ const PaletteList = ({ palettes, classes }) => (
       <div className={classes.palettes}>
         {
           palettes.map(palette => (
-            <MiniPalette key={palette.id} palette={palette} />
+            <MiniPalette key={palette.id} palette={palette} handleDelete={deletePalette} />
           ))
         }
       </div>

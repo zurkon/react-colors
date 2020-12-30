@@ -7,8 +7,9 @@ const styles = {
     padding: '0.5rem',
     position: 'relative',
     overflow: 'hidden',
-    '&:hover': {
-      cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover #delete': {
+      opacity: 1
     }
   },
   colors: {
@@ -38,6 +39,27 @@ const styles = {
   miniColor: {
     height: '25%',
     width: '20%'
+  },
+  delete: {
+    background: '#eb3d30',
+    width: '32px',
+    height: '32px',
+    position: 'absolute',
+    right: '0',
+    top: '0',
+    padding: '5px',
+    boxShadow: '-4px 4px 8px rgba(0, 0, 0, 0.3)',
+    opacity: 0,
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+  },
+  deleteIcon: {
+    color: '#e0e0e0',
+    width: '100%',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    '&:hover': {
+      transform: 'scale(1.3)',
+      color: 'white'
+    }
   }
 };
 
