@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<div style="width: 40%">
+<div style="width: 600">
   
   <img src="./src/img/main.png" />
   <!-- ![image](https://i.imgur.com/9x1F9At.png) -->
@@ -26,6 +26,8 @@ This project was made using:
 
 # Screenshoots
 
+<div align="center">
+
 ## Palette Page
 
 <img style="margin-top: 15px; margin-bottom: 40px;" src="./src/img/palette.png" />
@@ -34,9 +36,11 @@ This project was made using:
 <img style="margin-top: 15px; margin-bottom: 40px;" src="./src/img/create.png" />
 
 ## Responsive Project
-<div style="margin-top: 15px; margin-bottom: 40px; display: flex; justify-content: space-between;">
-  <img width="40%" src="./src/img/mobile.png" />
-  <img width="40%" src="./src/img/mobilePalette.png" />
+<div style="margin-top: 15px; margin-bottom: 40px;">
+  <img align="left" width="40" src="./src/img/mobile.png" />
+  <img align="right" width="40" src="./src/img/mobilePalette.png" />
+</div>
+
 </div>
 
 # Features
