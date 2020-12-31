@@ -64,7 +64,7 @@ const PaletteDialog = ({ savePalette, history, colors, palettes, classes }) => {
 
   return (
     <React.Fragment>
-      <Button startIcon={<SaveIcon />} classes={classes} variant="outlined" color="primary" onClick={(e) => { handleClickOpen(e, 'palette'); }}>
+      <Button startIcon={<SaveIcon />} className={classes.customButton} variant="outlined" color="primary" onClick={(e) => { handleClickOpen(e, 'palette'); }}>
         <span className="labelText">
           Save
         </span>

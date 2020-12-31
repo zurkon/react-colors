@@ -1,6 +1,12 @@
+import background from '../../background.svg';
+
 const styles = {
   root: {
-    backgroundColor: 'blue',
+    // backgroundColor: 'blue',
+    backgroundColor: '#8b13e1',
+    backgroundImage: `url(${background})`,
+    backgroundAttachment: 'fixed',
+    backgroundSize: 'cover',
     minHeight: '100vh',
     display: 'flex',
     alignItems: 'flex-start',

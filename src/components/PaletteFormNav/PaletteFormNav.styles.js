@@ -1,8 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import mediaQuery from '../../responsive';
 
-const drawerWidth = 320;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
@@ -55,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   },
-  label: {
+  customButton: {
     '& span': {
       marginRight: '0'
     },

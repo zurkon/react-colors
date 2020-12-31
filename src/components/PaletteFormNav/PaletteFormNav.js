@@ -44,7 +44,7 @@ const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, colors, 
 
           <PaletteDialog savePalette={savePalette} colors={colors} palettes={palettes} history={history} classes={classes} />
           <Link to="/">
-            <Button startIcon={<NavigateBeforeIcon />} classes={classes} variant="contained" color="secondary">
+            <Button startIcon={<NavigateBeforeIcon />} className={classes.customButton} variant="contained" color="secondary">
               <span className="labelText">
                 Back
               </span>
