@@ -4,7 +4,7 @@
 
 <div style="width: 40%">
   
-  <img src="https://i.imgur.com/9x1F9At.png" />
+  <img src="./src/img/main.png" />
   <!-- ![image](https://i.imgur.com/9x1F9At.png) -->
 
 </div>
@@ -22,13 +22,30 @@ This project was made using:
 - [`Material-UI`](https://github.com/mui-org/material-ui) - Reusable components made with Material Design
 - [`chroma.js`](https://github.com/gka/chroma.js) - Works with Color Palettes and Shades
 - [`React-Sortable-HOC`](https://github.com/clauderic/react-sortable-hoc) - Implements Drag n' Drop feature
+- [`emoji-mart`](https://github.com/missive/emoji-mart) - Emoji Picker component
 
 # Screenshoots
-![image](https://i.imgur.com/9x1F9At.png)
-![image](https://i.imgur.com/GM0etHA.png)
 
-<!-- ![image](https://i.imgur.com/QB2zRzf.png) -->
-<!-- ![image](https://i.imgur.com/aFowgNg.png) -->
+## Palette Page
+
+<img style="margin-top: 15px; margin-bottom: 40px;" src="./src/img/palette.png" />
+
+## Create Palette Page
+<img style="margin-top: 15px; margin-bottom: 40px;" src="./src/img/create.png" />
+
+## Responsive Project
+<div style="margin-top: 15px; margin-bottom: 40px; display: flex; justify-content: space-between;">
+  <img width="40%" src="./src/img/mobile.png" />
+  <img width="40%" src="./src/img/mobilePalette.png" />
+</div>
+
+# Features
+
+- Copy color code with one click
+- HEX, RGB and RGBA format support
+- Create and Delete new Palettes
+- Palettes are saved on Browser [`LocalStorage`](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/Window.localStorage)
+- Drag n' Drop palettes on **Create Palette Page** 
 
 # Getting Started
 
