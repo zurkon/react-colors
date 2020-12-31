@@ -13,7 +13,6 @@ const styles = {
     overflow: 'auto'
   },
   goBack: {
-    // width: '20%',
     width: '100%',
     height: '10%',
     display: 'block',

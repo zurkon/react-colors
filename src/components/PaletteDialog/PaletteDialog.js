@@ -11,7 +11,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 
-const PaletteDialog = ({ savePalette, history, colors, palettes }) => {
+const PaletteDialog = ({ savePalette, history, colors, palettes, classes }) => {
   const [stage, setOpen] = useState('');
   const [newPaletteName, setPaletteName] = useState('');
   const [errors, setErrors] = useState({
@@ -64,8 +64,10 @@ const PaletteDialog = ({ savePalette, history, colors, palettes }) => {
 
   return (
     <React.Fragment>
-      <Button startIcon={<SaveIcon />} variant="outlined" color="primary" onClick={(e) => { handleClickOpen(e, 'palette'); }}>
-        Save Palette
+      <Button startIcon={<SaveIcon />} classes={classes} variant="outlined" color="primary" onClick={(e) => { handleClickOpen(e, 'palette'); }}>
+        <span className="labelText">
+          Save
+        </span>
       </Button>
       <Dialog open={stage === 'emoji'} onClose={handleClose}>
         <DialogTitle>
@@ -95,7 +97,7 @@ const PaletteDialog = ({ savePalette, history, colors, palettes }) => {
                 Cancel
               </Button>
               <Button type="submit" variant="contained" color="primary">
-                Save Palette
+                Save
               </Button>
             </DialogActions>
           </form>

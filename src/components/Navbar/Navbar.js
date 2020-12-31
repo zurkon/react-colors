@@ -35,9 +35,9 @@ const Navbar = ({ level, format, changeLevel, changeFormat, showSlide, classes }
       }
       <div className={classes.selectContainer}>
         <Select value={format} onChange={(e) => { changeFormat(e.target.value); setOpen(true); }}>
-          <MenuItem value="hex">HEX - #ffffff</MenuItem>
-          <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
-          <MenuItem value="rgba">RGBA - rgba(255,255,255, 1.0)</MenuItem>
+          <MenuItem value="hex">HEX Format</MenuItem>
+          <MenuItem value="rgb">RGB Format</MenuItem>
+          <MenuItem value="rgba">RGBA Format</MenuItem>
         </Select>
       </div >
       <Snackbar

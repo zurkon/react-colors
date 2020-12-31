@@ -3,9 +3,7 @@ import mediaQuery from '../../responsive';
 
 const styles = {
   colorBox: {
-    // width: '20%',
     width: '100%',
-    // height: props => props.showLink ? '10%' : '10%',
     height: '10%',
     display: 'block',
     position: 'relative',
@@ -14,7 +12,6 @@ const styles = {
       opacity: 1,
       transition: '0.5s'
     },
-    // '@media (min-width: 576px)': {
     [mediaQuery.size('sm')]: {
       width: '50%',
       height: '25%',

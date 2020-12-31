@@ -5,7 +5,8 @@ const useStyles = makeStyles({
     height: '100%',
     display: 'flex',
     flexWrap: 'wrap',
-    alignContent: 'start'
+    alignContent: 'start',
+    overflowX: 'hidden'
   }
 });
 

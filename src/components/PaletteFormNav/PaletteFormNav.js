@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 import PaletteDialog from '../PaletteDialog/PaletteDialog';
 
@@ -36,15 +36,19 @@ const PaletteFormNav = ({ handleDrawerOpen, savePalette, history, open, colors, 
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <span className={classes.title}>
             Create Palette
-          </Typography>
+          </span>
         </Toolbar>
         <div className={classes.navBtns}>
 
-          <PaletteDialog savePalette={savePalette} colors={colors} palettes={palettes} history={history} />
+          <PaletteDialog savePalette={savePalette} colors={colors} palettes={palettes} history={history} classes={classes} />
           <Link to="/">
-            <Button variant="contained" color="secondary">Go Back</Button>
+            <Button startIcon={<NavigateBeforeIcon />} classes={classes} variant="contained" color="secondary">
+              <span className="labelText">
+                Back
+              </span>
+            </Button>
           </Link>
         </div>
       </AppBar>

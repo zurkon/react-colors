@@ -49,8 +49,10 @@ const PaletteForm = ({ savePalette, palettes, history }) => {
   const addRandomColor = () => {
     // flat() joins all arrays into a big one Array
     const allColors = palettes.map(p => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    const randomColor = allColors[rand];
+    // Prevent pick a color that already exists on our color palette
+    const filteredColors = allColors.filter(color => !colors.includes(color));
+    const rand = Math.floor(Math.random() * filteredColors.length);
+    const randomColor = filteredColors[rand];
     setColors([...colors, randomColor]);
   }
 

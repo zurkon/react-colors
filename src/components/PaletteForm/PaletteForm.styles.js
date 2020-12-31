@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'start',
     alignItems: 'center',
     "& h4": {
-      fontSize: '2rem !important'
+      fontSize: '1.7rem !important'
     }
   },
   buttons: {

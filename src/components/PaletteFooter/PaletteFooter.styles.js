@@ -6,7 +6,7 @@ const styles = {
     alignItems: 'center',
     fontWeight: '700',
     fontSize: '14px',
-    textTransform: 'uppercase',
+    textTransform: 'uppercase'
   },
   emoji: {
     margin: '0 0.5rem'

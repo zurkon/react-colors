@@ -1,15 +1,27 @@
 import { makeStyles } from '@material-ui/core/styles';
+import mediaQuery from '../../responsive';
 
 const useStyles = makeStyles({
   root: {
-    width: '20%',
-    height: '25%',
+    width: '100%',
+    height: '10%',
     display: 'block',
     position: 'relative',
     cursor: 'pointer',
     '&:hover svg': {
       color: 'white',
       transform: 'scale(1.5)'
+    },
+    [mediaQuery.size('sm')]: {
+      width: '50%'
+    },
+    [mediaQuery.size('md')]: {
+      width: '25%',
+      height: '20%'
+    },
+    [mediaQuery.size('lg')]: {
+      width: '20%',
+      height: '25%'
     }
   },
   boxContent: {
