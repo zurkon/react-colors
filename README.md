@@ -31,10 +31,10 @@ This project was made using:
   <img height="256" src="./src/img/create.png" />
 
   ## Responsive Project
-  <div style="margin-top: 15px; margin-bottom: 40px;">
-    <img align="left" width="200" src="./src/img/mobile.png" />
-    <img align="right" width="200" src="./src/img/mobilePalette.png" />
-  </div>
+
+  <img width="200" src="./src/img/mobile.png" />
+
+  <img width="200" src="./src/img/mobilePalette.png" />
 
 </div>
 
