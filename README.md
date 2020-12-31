@@ -2,12 +2,7 @@
 
 <div align="center">
 
-<div style="width: 600">
-  
-  <img src="./src/img/main.png" />
-  <!-- ![image](https://i.imgur.com/9x1F9At.png) -->
-
-</div>
+  <img width="400" src="./src/img/main.png" />
 
 A clone of [Material UI Colors](http://materialuicolors.co/?utm_source=launchers) made with [`React`](https://facebook.github.io/react/).
 
@@ -28,18 +23,18 @@ This project was made using:
 
 <div align="center">
 
-## Palette Page
+  ## Palette Page
 
-<img style="margin-top: 15px; margin-bottom: 40px;" src="./src/img/palette.png" />
+  <img height="256" src="./src/img/palette.png" />
 
-## Create Palette Page
-<img style="margin-top: 15px; margin-bottom: 40px;" src="./src/img/create.png" />
+  ## Create Palette Page
+  <img height="256" src="./src/img/create.png" />
 
-## Responsive Project
-<div style="margin-top: 15px; margin-bottom: 40px;">
-  <img align="left" width="40" src="./src/img/mobile.png" />
-  <img align="right" width="40" src="./src/img/mobilePalette.png" />
-</div>
+  ## Responsive Project
+  <div style="margin-top: 15px; margin-bottom: 40px;">
+    <img align="left" width="200" src="./src/img/mobile.png" />
+    <img align="right" width="200" src="./src/img/mobilePalette.png" />
+  </div>
 
 </div>
 
