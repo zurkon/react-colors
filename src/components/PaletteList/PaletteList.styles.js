@@ -7,9 +7,9 @@ const styles = {
     justifyContent: 'center'
   },
   container: {
-    width: '60%',
-    maxWidth: '37rem',
-    height: '100%'
+    maxWidth: '720px',
+    height: '100%',
+    padding: '0 0.5rem'
   },
   nav: {
     display: 'flex',
@@ -35,6 +35,7 @@ const styles = {
     boxSizing: 'border-box',
     width: '100%',
     display: 'flex',
+    justifyContent: 'space-around',
     flexWrap: 'wrap',
     gap: '5%',
     paddingBottom: '2rem'

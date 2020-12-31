@@ -1,16 +1,27 @@
+import mediaQuery from '../../responsive';
+
 const styles = {
   root: {
     backgroundColor: 'white',
     borderRadius: 5,
     marginTop: '5%',
-    width: '30%',
+    width: '80%',
     padding: '0.5rem',
     position: 'relative',
     overflow: 'hidden',
     cursor: 'pointer',
     '&:hover #delete': {
       opacity: 1
-    }
+    },
+    [mediaQuery.size('xs')]: {
+      width: '50%'
+    },
+    [mediaQuery.size('sm')]: {
+      width: '40%'
+    },
+    [mediaQuery.size('md')]: {
+      width: '30%'
+    },
   },
   colors: {
     backgroundColor: '#dae1e4',

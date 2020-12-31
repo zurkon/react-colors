@@ -40,6 +40,7 @@ const styles = {
     marginLeft: '0',
     order: '3',
     width: '100%',
+    height: '4vh',
     [mediaQuery.size('sm')]: {
       marginLeft: '1rem',
       justifyContent: 'flex-start',
