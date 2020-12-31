@@ -8,7 +8,9 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     alignContent: 'start',
-    background: '#dae1e4'
+    background: '#dae1e4',
+    overflowY: 'auto',
+    overflowX: 'hidden'
   }
 };
 

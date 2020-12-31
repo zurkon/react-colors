@@ -1,16 +1,31 @@
 import chroma from 'chroma-js';
+import mediaQuery from '../../responsive';
 
 const styles = {
   colorBox: {
-    width: '20%',
-    height: props => props.showLink ? '25%' : '50%',
+    // width: '20%',
+    width: '100%',
+    // height: props => props.showLink ? '10%' : '10%',
+    height: '10%',
     display: 'block',
     position: 'relative',
     cursor: 'pointer',
     '&:hover button': {
       opacity: 1,
       transition: '0.5s'
-    }
+    },
+    // '@media (min-width: 576px)': {
+    [mediaQuery.size('sm')]: {
+      width: '50%',
+      height: '25%',
+    },
+    [mediaQuery.size('md')]: {
+      width: '25%',
+      height: props => props.showLink ? '25%' : '50%',
+    },
+    [mediaQuery.size('lg')]: {
+      width: '20%'
+    },
   },
   boxContent: {
     position: 'absolute',
@@ -83,7 +98,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '4rem',
+    fontSize: '2rem',
     transform: 'scale(0.1)',
     opacity: '0',
     color: 'white',
@@ -101,6 +116,9 @@ const styles = {
       fontSize: '2rem',
       fontWeight: '100',
       color: props => chroma(props.color).luminance() >= 0.7 ? 'rgba(0,0,0, 0.7);' : 'white'
+    },
+    [mediaQuery.size('sm')]: {
+      fontSize: '4rem'
     }
   },
   showMessage: {

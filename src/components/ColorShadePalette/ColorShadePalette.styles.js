@@ -1,3 +1,5 @@
+import mediaQuery from '../../responsive';
+
 const styles = {
   palette: {
     height: '100vh',
@@ -7,11 +9,13 @@ const styles = {
     height: '90%',
     display: 'flex',
     flexWrap: 'wrap',
-    background: '#dae1e4'
+    background: '#dae1e4',
+    overflow: 'auto'
   },
   goBack: {
-    width: '20%',
-    height: '50%',
+    // width: '20%',
+    width: '100%',
+    height: '10%',
     display: 'block',
     position: 'relative',
     cursor: 'pointer',
@@ -35,6 +39,18 @@ const styles = {
       border: 'none',
       cursor: 'pointer',
       textDecoration: 'none'
+    },
+    [mediaQuery.size('sm')]: {
+      width: '50%',
+      height: '25%'
+    },
+    [mediaQuery.size('md')]: {
+      width: '75%',
+      height: '50%'
+    },
+    [mediaQuery.size('lg')]: {
+      width: '20%',
+      height: '50%'
     }
   }
 };
