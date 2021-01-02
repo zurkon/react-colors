@@ -1,4 +1,4 @@
-import background from '../../background.svg';
+import background from '../../assets/background.svg';
 
 const styles = {
   root: {

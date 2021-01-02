@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img width="400" src="./src/img/main.png" />
+  <img width="400" src="./src/assets/main.png" />
 
 A clone of [Material UI Colors](http://materialuicolors.co/?utm_source=launchers) made with [`React`](https://facebook.github.io/react/).
 
@@ -25,16 +25,16 @@ This project was made using:
 
   ## Palette Page
 
-  <img height="256" src="./src/img/palette.png" />
+  <img height="256" src="./src/assets/palette.png" />
 
   ## Create Palette Page
-  <img height="256" src="./src/img/create.png" />
+  <img height="256" src="./src/assets/create.png" />
 
   ## Responsive Project
 
-  <img width="200" src="./src/img/mobile.png" />
+  <img width="200" src="./src/assets/mobile.png" />
 
-  <img width="200" src="./src/img/mobilePalette.png" />
+  <img width="200" src="./src/assets/mobilePalette.png" />
 
 </div>
 
