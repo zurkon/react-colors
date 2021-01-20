@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img width="400" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/img/main.png" />
+  <img width="400" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/react-colors/main.png" />
 
 A clone of [Material UI Colors](http://materialuicolors.co/?utm_source=launchers) made with [`React`](https://facebook.github.io/react/).
 
@@ -25,16 +25,16 @@ This project was made using:
 
   ## Palette Page
 
-  <img height="256" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/img/palette.png" />
+  <img height="256" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/react-colors/palette.png" />
 
   ## Create Palette Page
-  <img height="256" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/img/create.png" />
+  <img height="256" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/react-colors/create.png" />
 
   ## Responsive Project
 
-  <img width="200" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/img/mobile.png" />
+  <img width="200" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/react-colors/mobile.png" />
 
-  <img width="200" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/img/mobilePalette.png" />
+  <img width="200" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/react-colors/mobilePalette.png" />
 
 </div>
 
