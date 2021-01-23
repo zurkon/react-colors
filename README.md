@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img width="400" src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/img/main.png" />
+  <img src="https://raw.githubusercontent.com/Zurkon/RepoAssets/main/img/main.png" />
 
 A clone of [Material UI Colors](http://materialuicolors.co/?utm_source=launchers) made with [`React`](https://facebook.github.io/react/).
 
